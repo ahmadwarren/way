@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Basics - LearnHub</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+</head>
+
+<body>
+     <div class="menu">
+       
+        <button class="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.toggle('active')">☰</button>
+         <button class="theme-toggle" onclick="document.location.href='../'">Way</button>
+         <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    </div>
+    <div class="course-layout">
+   
+        <aside class="sidebar">
+            <h2>HTML Basics</h2>
+            <input type="text" id="searchInput" placeholder="Search sections..." onkeyup="filterLinks()" />
+            <a href="#intro">Introduction</a>
+            <a href="#structure">HTML Structure</a>
+            <a href="#tags">Common Tags</a>
+            <a href="#examples">Examples</a>
+            <a href="#attributes">Attributes</a>
+            <a href="#semantic">Semantic HTML</a>
+            <a href="#forms">Forms</a>
+            <a href="#media">Media Elements</a>
+        </aside>
+
+        <main class="course-content" id="course-content">
+            <h1 id="intro">Loading...</h1>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        const sections = {
+            intro: `<h1 id="intro">Introduction</h1><p>HTML (HyperText Markup Language) is the standard language used to create webpages...</p>`,
+            structure: `<h2 id="structure">HTML Structure</h2><p>...</p><div class="code-block"><pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;...&lt;/html&gt;</code></pre></div>`,
+            tags: `<h2 id="tags">Common Tags</h2><p>...</p>`,
+            examples: `<h2 id="examples">Examples</h2><p>...</p><div class="code-block"><pre><code class="language-html">&lt;html&gt;...&lt;/html&gt;</code></pre></div>`,
+            attributes: `<h2 id="attributes">Attributes</h2><p>Attributes provide additional information about elements...</p><div class="code-block"><pre><code class="language-html">&lt;a href=\"https://example.com\" target=\"_blank\"&gt;Visit&lt;/a&gt;</code></pre></div>`,
+            semantic: `<h2 id="semantic">Semantic HTML</h2><p>Semantic elements clearly describe their meaning in a human- and machine-readable way...</p><ul><li>&lt;header&gt;</li><li>&lt;nav&gt;</li><li>&lt;section&gt;</li><li>&lt;article&gt;</li><li>&lt;footer&gt;</li></ul>`,
+            forms: `<h2 id="forms">Forms</h2><p>Forms allow users to send data to a server...</p><div class="code-block"><pre><code class="language-html">&lt;form&gt;\n  &lt;input type=\"text\" name=\"name\" /&gt;\n  &lt;button&gt;Submit&lt;/button&gt;\n&lt;/form&gt;</code></pre></div>`,
+            media: `<h2 id="media">Media Elements</h2><p>HTML supports images, audio, and video elements...</p><div class="code-block"><pre><code class="language-html">&lt;img src=\"image.jpg\" alt=\"Example\" /&gt;\n&lt;video controls&gt;...&lt;/video&gt;</code></pre></div>`
+        };
+
+        function loadContent() {
+            const container = document.getElementById("course-content");
+            container.innerHTML = Object.values(sections).join("\n\n");
+            hljs.highlightAll();
+        }
+
+        function filterLinks() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const links = document.querySelectorAll(".sidebar a");
+            links.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                link.style.display = text.includes(input) ? "block" : "none";
+            });
+        }
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            const currentBg = getComputedStyle(root).getPropertyValue('--bg-color').trim();
+            if (currentBg === '#0d1117') {
+                root.style.setProperty('--bg-color', '#ffffff');
+                root.style.setProperty('--text-color', '#1c1c1c');
+                root.style.setProperty('--card-color', '#f3f4f6');
+                root.style.setProperty('--subtext-color', '#6b7280');
+            } else {
+                root.style.setProperty('--bg-color', '#0d1117');
+                root.style.setProperty('--text-color', '#e6edf3');
+                root.style.setProperty('--card-color', '#161b22');
+                root.style.setProperty('--subtext-color', '#8b949e');
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", loadContent);
+    </script>
+</body>
+
+</html>
