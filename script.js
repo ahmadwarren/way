@@ -25,8 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.style.border = "none";
     toggle.style.cursor = "pointer";
     toggle.style.zIndex = "1000";
-    document.body.appendChild(toggle);
+    
   
+    const navLinks = document.querySelectorAll(".nav-links");
+    document.navLinks.appendChild(toggle);
+
     let dark = true;
     toggle.addEventListener("click", () => {
       document.documentElement.style.setProperty("--bg-color", dark ? "#f4f4f4" : "#0d1117");

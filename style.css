@@ -16,6 +16,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
+    text-decoration: none;
 }
 
 body {
@@ -172,7 +173,11 @@ body {
     color: var(--accent-color);
     margin-bottom: 1rem;
 }
-
+.accent-color-text {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
 .sidebar input {
     width: 100%;
     padding: 0.5rem;
